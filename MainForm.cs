@@ -23,7 +23,6 @@ namespace Timer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            notifyIcon1.Icon = SystemIcons.Application;
             notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
             notifyIcon1.BalloonTipTitle = "Allert";
             notifyIcon1.BalloonTipText = "Timer complete";
@@ -79,7 +78,7 @@ namespace Timer
             DisableTimer();
             EnableTxtBoxs();
             EnableStartButton();
-            EnableStopResumButton();
+            DisableStopResumButton();
 
             lblDuration.Text = "0 : 0 : 0";
             txbHours.Text = "0";
@@ -124,6 +123,7 @@ namespace Timer
 
                 DisableStartButton();
                 DisableTxtBoxs();
+                EnableStopResumButton();
                 EnableTimer();
             }
 
@@ -163,6 +163,8 @@ namespace Timer
 
         private void btnStopResum_Click(object sender, EventArgs e)
         {
+            
+
             if (btnStopResum.Text == "Stop")
             {
                 btnStopResum.Text = "Resum";

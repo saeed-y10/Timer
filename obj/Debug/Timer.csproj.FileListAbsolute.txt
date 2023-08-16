@@ -1,4 +1,3 @@
-C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.csproj.AssemblyReference.cache
 C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.csproj.SuggestedBindingRedirects.cache
 C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.Properties.Resources.resources
 C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.csproj.GenerateResource.cache

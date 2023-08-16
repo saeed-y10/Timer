@@ -31,6 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.txbHours = new System.Windows.Forms.MaskedTextBox();
             this.txbMinutes = new System.Windows.Forms.MaskedTextBox();
             this.txbSeconds = new System.Windows.Forms.MaskedTextBox();
@@ -126,6 +127,7 @@
             // 
             // btnStopResum
             // 
+            this.btnStopResum.Enabled = false;
             this.btnStopResum.Font = new System.Drawing.Font("Inter", 9F, System.Drawing.FontStyle.Bold);
             this.btnStopResum.Location = new System.Drawing.Point(226, 303);
             this.btnStopResum.Name = "btnStopResum";
@@ -176,6 +178,7 @@
             this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon1.BalloonTipText = "Timer Complete";
             this.notifyIcon1.BalloonTipTitle = "Allert";
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "Timer Complete";
             this.notifyIcon1.Visible = true;
             // 
@@ -195,6 +198,7 @@
             this.Controls.Add(this.txbSeconds);
             this.Controls.Add(this.txbMinutes);
             this.Controls.Add(this.txbHours);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Timer";
             this.Load += new System.EventHandler(this.Form1_Load);
