@@ -1,0 +1,11 @@
+C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.csproj.AssemblyReference.cache
+C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.csproj.SuggestedBindingRedirects.cache
+C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.Properties.Resources.resources
+C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.csproj.GenerateResource.cache
+C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.csproj.CoreCompileInputs.cache
+C:\Users\saeed\source\repos\Timer\bin\Debug\Timer.exe.config
+C:\Users\saeed\source\repos\Timer\bin\Debug\Timer.exe
+C:\Users\saeed\source\repos\Timer\bin\Debug\Timer.pdb
+C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.exe
+C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.pdb
+C:\Users\saeed\source\repos\Timer\obj\Debug\Timer.MainForm.resources
