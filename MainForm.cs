@@ -28,6 +28,16 @@ namespace Timer
             notifyIcon1.BalloonTipText = "Timer complete";
         }
 
+        private void ShowDoneImage()
+        {
+                pbDone.Visible = true;
+        }
+
+        private void HideDoneImage()
+        {
+            pbDone.Visible = false;
+        }
+
         private void EnableTimer()
         {
             timer1.Enabled = true;
@@ -48,22 +58,25 @@ namespace Timer
         private void EnableStartButton()
         {
             btnStart.Enabled = true;
+            btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
         }
 
         private void DisableStartButton()
         {
             btnStart.Enabled = false;
+            btnStart.Cursor = System.Windows.Forms.Cursors.Default;
         }
 
-
-        private void EnableStopResumButton()
+        private void EnableStopResumeButton()
         {
-            btnStopResum.Enabled = true;
+            btnStopResume.Enabled = true;
+            btnStopResume.Cursor = System.Windows.Forms.Cursors.Hand;
         }
 
-        private void DisableStopResumButton()
+        private void DisableStopResumeButton()
         {
-            btnStopResum.Enabled = false;
+            btnStopResume.Enabled = false;
+            btnStopResume.Cursor = System.Windows.Forms.Cursors.Default;
         }
 
         private void DisableTxtBoxs()
@@ -75,10 +88,11 @@ namespace Timer
 
         private void ResetAllDefaults()
         {
+            HideDoneImage();
             DisableTimer();
             EnableTxtBoxs();
             EnableStartButton();
-            DisableStopResumButton();
+            DisableStopResumeButton();
 
             lblDuration.Text = "0 : 0 : 0";
             txbHours.Text = "0";
@@ -105,6 +119,29 @@ namespace Timer
             return (Convert.ToInt32(txbHours.Text) >= 0 && Convert.ToInt32(txbMinutes.Text) >= 0 && Convert.ToInt32(txbSeconds.Text) >= 0);
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (DurationTime.TotalSeconds < TotalTime.TotalSeconds && progressBar1.Value < progressBar1.Maximum)
+            {
+                DurationTime = DurationTime.Add(new TimeSpan(0, 0, 1));
+                progressBar1.Value += 1;
+
+                UpdateDurationLabel();
+
+                //progressBar1.Refresh();
+                //lblDuration.Refresh();
+            }
+
+            else
+            {
+                DisableTimer();
+                DisableStopResumeButton();
+                ShowDoneImage();
+                notifyIcon1.ShowBalloonTip(30000);
+            }
+
+        }
+
         private void btnStart_Click(object sender, EventArgs e)
         {
             if (IsAllInputsAreZero())
@@ -123,7 +160,7 @@ namespace Timer
 
                 DisableStartButton();
                 DisableTxtBoxs();
-                EnableStopResumButton();
+                EnableStopResumeButton();
                 EnableTimer();
             }
 
@@ -131,29 +168,6 @@ namespace Timer
             {
                 MessageBox.Show("invaled inputs", "error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (DurationTime.TotalSeconds < TotalTime.TotalSeconds && progressBar1.Value < progressBar1.Maximum)
-            {
-                DurationTime = DurationTime.Add(new TimeSpan(0, 0, 1));
-                progressBar1.Value += 1;
-
-                UpdateDurationLabel();
-
-                //progressBar1.Refresh();
-                //lblDuration.Refresh();
-            }
-
-            else
-            {
-                DisableTimer();
-                DisableStopResumButton();
-                notifyIcon1.ShowBalloonTip(30000);
-            }
-
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -161,28 +175,22 @@ namespace Timer
             ResetAllDefaults();
         }
 
-        private void btnStopResum_Click(object sender, EventArgs e)
+        private void btnStopResume_Click(object sender, EventArgs e)
         {
-            
-
-            if (btnStopResum.Text == "Stop")
+            if (btnStopResume.Tag.ToString() == "Stop")
             {
-                btnStopResum.Text = "Resum";
+                btnStopResume.Tag = "Resume";
+                btnStopResume.Image = Properties.Resources.Pause;
                 DisableTimer();
             }
 
             else
             {
-                btnStopResum.Text = "Stop";
+                btnStopResume.Tag = "Stop";
+                btnStopResume.Image = Properties.Resources.Stop;
                 EnableTimer();
             }
         }
-
-        private void notifyIcon1_BalloonTipShown(object sender, EventArgs e)
-        {
-
-        }
-
 
     }
 }

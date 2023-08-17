@@ -38,13 +38,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnStopResum = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblDuration = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.btnStart = new System.Windows.Forms.PictureBox();
+            this.btnStopResume = new System.Windows.Forms.PictureBox();
+            this.btnReset = new System.Windows.Forms.PictureBox();
+            this.pbDone = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStopResume)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnReset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDone)).BeginInit();
             this.SuspendLayout();
             // 
             // txbHours
@@ -114,40 +119,6 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Seconds";
             // 
-            // btnStart
-            // 
-            this.btnStart.Font = new System.Drawing.Font("Inter", 9F, System.Drawing.FontStyle.Bold);
-            this.btnStart.Location = new System.Drawing.Point(12, 303);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(92, 37);
-            this.btnStart.TabIndex = 6;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // btnStopResum
-            // 
-            this.btnStopResum.Enabled = false;
-            this.btnStopResum.Font = new System.Drawing.Font("Inter", 9F, System.Drawing.FontStyle.Bold);
-            this.btnStopResum.Location = new System.Drawing.Point(226, 303);
-            this.btnStopResum.Name = "btnStopResum";
-            this.btnStopResum.Size = new System.Drawing.Size(92, 37);
-            this.btnStopResum.TabIndex = 7;
-            this.btnStopResum.Text = "Stop";
-            this.btnStopResum.UseVisualStyleBackColor = true;
-            this.btnStopResum.Click += new System.EventHandler(this.btnStopResum_Click);
-            // 
-            // btnReset
-            // 
-            this.btnReset.Font = new System.Drawing.Font("Inter", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(440, 303);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(92, 37);
-            this.btnReset.TabIndex = 8;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
             // timer1
             // 
             this.timer1.Interval = 1000;
@@ -182,16 +153,70 @@
             this.notifyIcon1.Text = "Timer Complete";
             this.notifyIcon1.Visible = true;
             // 
+            // btnStart
+            // 
+            this.btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStart.Image = global::Timer.Properties.Resources.Start;
+            this.btnStart.Location = new System.Drawing.Point(12, 283);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(76, 58);
+            this.btnStart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnStart.TabIndex = 11;
+            this.btnStart.TabStop = false;
+            this.btnStart.Tag = "Play";
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // btnStopResume
+            // 
+            this.btnStopResume.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnStopResume.Enabled = false;
+            this.btnStopResume.Image = global::Timer.Properties.Resources.Stop;
+            this.btnStopResume.Location = new System.Drawing.Point(234, 283);
+            this.btnStopResume.Name = "btnStopResume";
+            this.btnStopResume.Size = new System.Drawing.Size(76, 58);
+            this.btnStopResume.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnStopResume.TabIndex = 12;
+            this.btnStopResume.TabStop = false;
+            this.btnStopResume.Tag = "Stop";
+            this.btnStopResume.Click += new System.EventHandler(this.btnStopResume_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReset.Image = global::Timer.Properties.Resources.Restart;
+            this.btnReset.Location = new System.Drawing.Point(456, 283);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(76, 58);
+            this.btnReset.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnReset.TabIndex = 13;
+            this.btnReset.TabStop = false;
+            this.btnReset.Tag = "Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // pbDone
+            // 
+            this.pbDone.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbDone.Image = global::Timer.Properties.Resources.Done;
+            this.pbDone.Location = new System.Drawing.Point(23, 35);
+            this.pbDone.Name = "pbDone";
+            this.pbDone.Size = new System.Drawing.Size(92, 72);
+            this.pbDone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbDone.TabIndex = 14;
+            this.pbDone.TabStop = false;
+            this.pbDone.Tag = "Done";
+            this.pbDone.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(544, 376);
+            this.Controls.Add(this.pbDone);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.btnStopResume);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblDuration);
-            this.Controls.Add(this.btnReset);
-            this.Controls.Add(this.btnStopResum);
-            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -202,6 +227,10 @@
             this.Name = "MainForm";
             this.Text = "Timer";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.btnStart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStopResume)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnReset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDone)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,13 +243,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Button btnStopResum;
-        private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblDuration;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.PictureBox btnStart;
+        private System.Windows.Forms.PictureBox btnStopResume;
+        private System.Windows.Forms.PictureBox btnReset;
+        private System.Windows.Forms.PictureBox pbDone;
     }
 }
 
