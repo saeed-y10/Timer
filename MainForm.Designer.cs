@@ -32,9 +32,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.txbHours = new System.Windows.Forms.MaskedTextBox();
-            this.txbMinutes = new System.Windows.Forms.MaskedTextBox();
-            this.txbSeconds = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,52 +39,21 @@
             this.lblDuration = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.btnStart = new System.Windows.Forms.PictureBox();
-            this.btnStopResume = new System.Windows.Forms.PictureBox();
-            this.btnReset = new System.Windows.Forms.PictureBox();
             this.pbDone = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStopResume)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnReset)).BeginInit();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnStopResume = new System.Windows.Forms.Button();
+            this.numHours = new System.Windows.Forms.NumericUpDown();
+            this.numMinutes = new System.Windows.Forms.NumericUpDown();
+            this.numSeconds = new System.Windows.Forms.NumericUpDown();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblCompletePercentage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbDone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHours)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMinutes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSeconds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txbHours
-            // 
-            this.txbHours.BeepOnError = true;
-            this.txbHours.Font = new System.Drawing.Font("Comic Sans MS", 7.8F, System.Drawing.FontStyle.Italic);
-            this.txbHours.Location = new System.Drawing.Point(12, 238);
-            this.txbHours.Mask = "0";
-            this.txbHours.Name = "txbHours";
-            this.txbHours.Size = new System.Drawing.Size(92, 26);
-            this.txbHours.TabIndex = 0;
-            this.txbHours.Text = "0";
-            // 
-            // txbMinutes
-            // 
-            this.txbMinutes.AllowPromptAsInput = false;
-            this.txbMinutes.BeepOnError = true;
-            this.txbMinutes.Font = new System.Drawing.Font("Comic Sans MS", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbMinutes.Location = new System.Drawing.Point(226, 238);
-            this.txbMinutes.Mask = "00";
-            this.txbMinutes.Name = "txbMinutes";
-            this.txbMinutes.Size = new System.Drawing.Size(92, 26);
-            this.txbMinutes.TabIndex = 1;
-            this.txbMinutes.Text = "00";
-            this.txbMinutes.ValidatingType = typeof(int);
-            // 
-            // txbSeconds
-            // 
-            this.txbSeconds.AllowPromptAsInput = false;
-            this.txbSeconds.BeepOnError = true;
-            this.txbSeconds.Font = new System.Drawing.Font("Comic Sans MS", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbSeconds.Location = new System.Drawing.Point(440, 238);
-            this.txbSeconds.Mask = "00";
-            this.txbSeconds.Name = "txbSeconds";
-            this.txbSeconds.Size = new System.Drawing.Size(92, 26);
-            this.txbSeconds.TabIndex = 2;
-            this.txbSeconds.Text = "00";
-            this.txbSeconds.ValidatingType = typeof(int);
             // 
             // label1
             // 
@@ -128,7 +94,7 @@
             // 
             this.lblDuration.Font = new System.Drawing.Font("Comic Sans MS", 25.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDuration.ForeColor = System.Drawing.Color.Crimson;
-            this.lblDuration.Location = new System.Drawing.Point(12, 35);
+            this.lblDuration.Location = new System.Drawing.Point(12, 19);
             this.lblDuration.Name = "lblDuration";
             this.lblDuration.Size = new System.Drawing.Size(520, 72);
             this.lblDuration.TabIndex = 9;
@@ -137,7 +103,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 147);
+            this.progressBar1.Location = new System.Drawing.Point(4, 147);
             this.progressBar1.MarqueeAnimationSpeed = 1000;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(520, 23);
@@ -153,51 +119,11 @@
             this.notifyIcon1.Text = "Timer Complete";
             this.notifyIcon1.Visible = true;
             // 
-            // btnStart
-            // 
-            this.btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStart.Image = global::Timer.Properties.Resources.Start;
-            this.btnStart.Location = new System.Drawing.Point(12, 283);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(76, 58);
-            this.btnStart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnStart.TabIndex = 11;
-            this.btnStart.TabStop = false;
-            this.btnStart.Tag = "Play";
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // btnStopResume
-            // 
-            this.btnStopResume.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnStopResume.Enabled = false;
-            this.btnStopResume.Image = global::Timer.Properties.Resources.Stop;
-            this.btnStopResume.Location = new System.Drawing.Point(234, 283);
-            this.btnStopResume.Name = "btnStopResume";
-            this.btnStopResume.Size = new System.Drawing.Size(76, 58);
-            this.btnStopResume.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnStopResume.TabIndex = 12;
-            this.btnStopResume.TabStop = false;
-            this.btnStopResume.Tag = "Stop";
-            this.btnStopResume.Click += new System.EventHandler(this.btnStopResume_Click);
-            // 
-            // btnReset
-            // 
-            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReset.Image = global::Timer.Properties.Resources.Restart;
-            this.btnReset.Location = new System.Drawing.Point(456, 283);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(76, 58);
-            this.btnReset.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnReset.TabIndex = 13;
-            this.btnReset.TabStop = false;
-            this.btnReset.Tag = "Reset";
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
             // pbDone
             // 
             this.pbDone.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbDone.Image = global::Timer.Properties.Resources.Done;
-            this.pbDone.Location = new System.Drawing.Point(23, 35);
+            this.pbDone.Image = ((System.Drawing.Image)(resources.GetObject("pbDone.Image")));
+            this.pbDone.Location = new System.Drawing.Point(23, 19);
             this.pbDone.Name = "pbDone";
             this.pbDone.Size = new System.Drawing.Size(92, 72);
             this.pbDone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -206,40 +132,147 @@
             this.pbDone.Tag = "Done";
             this.pbDone.Visible = false;
             // 
+            // btnStart
+            // 
+            this.btnStart.AutoSize = true;
+            this.btnStart.BackColor = System.Drawing.SystemColors.Control;
+            this.btnStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnStart.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnStart.FlatAppearance.BorderSize = 0;
+            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStart.ForeColor = System.Drawing.Color.Black;
+            this.btnStart.Image = global::Timer.Properties.Resources.Start;
+            this.btnStart.Location = new System.Drawing.Point(12, 283);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(70, 70);
+            this.btnStart.TabIndex = 3;
+            this.btnStart.Tag = "Start";
+            this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.AutoSize = true;
+            this.btnReset.BackColor = System.Drawing.SystemColors.Control;
+            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReset.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.ForeColor = System.Drawing.Color.Black;
+            this.btnReset.Image = global::Timer.Properties.Resources.Restart;
+            this.btnReset.Location = new System.Drawing.Point(440, 283);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(70, 70);
+            this.btnReset.TabIndex = 5;
+            this.btnReset.Tag = "Reset";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnStopResume
+            // 
+            this.btnStopResume.AutoSize = true;
+            this.btnStopResume.BackColor = System.Drawing.SystemColors.Control;
+            this.btnStopResume.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnStopResume.Enabled = false;
+            this.btnStopResume.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnStopResume.FlatAppearance.BorderSize = 0;
+            this.btnStopResume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStopResume.ForeColor = System.Drawing.Color.Black;
+            this.btnStopResume.Image = global::Timer.Properties.Resources.Stop;
+            this.btnStopResume.Location = new System.Drawing.Point(226, 283);
+            this.btnStopResume.Name = "btnStopResume";
+            this.btnStopResume.Size = new System.Drawing.Size(70, 70);
+            this.btnStopResume.TabIndex = 4;
+            this.btnStopResume.TabStop = false;
+            this.btnStopResume.Tag = "Stop";
+            this.btnStopResume.UseVisualStyleBackColor = false;
+            this.btnStopResume.Click += new System.EventHandler(this.btnStopResume_Click);
+            // 
+            // numHours
+            // 
+            this.numHours.Location = new System.Drawing.Point(12, 242);
+            this.numHours.Maximum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.numHours.Name = "numHours";
+            this.numHours.Size = new System.Drawing.Size(92, 22);
+            this.numHours.TabIndex = 0;
+            // 
+            // numMinutes
+            // 
+            this.numMinutes.Location = new System.Drawing.Point(226, 242);
+            this.numMinutes.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.numMinutes.Name = "numMinutes";
+            this.numMinutes.Size = new System.Drawing.Size(92, 22);
+            this.numMinutes.TabIndex = 1;
+            // 
+            // numSeconds
+            // 
+            this.numSeconds.Location = new System.Drawing.Point(440, 238);
+            this.numSeconds.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.numSeconds.Name = "numSeconds";
+            this.numSeconds.Size = new System.Drawing.Size(92, 22);
+            this.numSeconds.TabIndex = 2;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // lblCompletePercentage
+            // 
+            this.lblCompletePercentage.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCompletePercentage.Location = new System.Drawing.Point(218, 91);
+            this.lblCompletePercentage.Name = "lblCompletePercentage";
+            this.lblCompletePercentage.Size = new System.Drawing.Size(100, 47);
+            this.lblCompletePercentage.TabIndex = 15;
+            this.lblCompletePercentage.Text = "0%";
+            this.lblCompletePercentage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
+            this.AcceptButton = this.btnStart;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 376);
-            this.Controls.Add(this.pbDone);
-            this.Controls.Add(this.btnReset);
+            this.ClientSize = new System.Drawing.Size(547, 376);
+            this.Controls.Add(this.lblCompletePercentage);
+            this.Controls.Add(this.numSeconds);
+            this.Controls.Add(this.numMinutes);
+            this.Controls.Add(this.numHours);
             this.Controls.Add(this.btnStopResume);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.pbDone);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblDuration);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txbSeconds);
-            this.Controls.Add(this.txbMinutes);
-            this.Controls.Add(this.txbHours);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Timer";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.btnStart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStopResume)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnReset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHours)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMinutes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSeconds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.MaskedTextBox txbHours;
-        private System.Windows.Forms.MaskedTextBox txbMinutes;
-        private System.Windows.Forms.MaskedTextBox txbSeconds;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -247,10 +280,15 @@
         private System.Windows.Forms.Label lblDuration;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.PictureBox btnStart;
-        private System.Windows.Forms.PictureBox btnStopResume;
-        private System.Windows.Forms.PictureBox btnReset;
         private System.Windows.Forms.PictureBox pbDone;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnStopResume;
+        private System.Windows.Forms.NumericUpDown numHours;
+        private System.Windows.Forms.NumericUpDown numMinutes;
+        private System.Windows.Forms.NumericUpDown numSeconds;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label lblCompletePercentage;
     }
 }
 

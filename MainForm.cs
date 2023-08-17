@@ -50,40 +50,59 @@ namespace Timer
 
         private void EnableTxtBoxs()
         {
-            txbHours.Enabled = true;
-            txbMinutes.Enabled = true;
-            txbSeconds.Enabled = true;
+            numHours.Enabled = true;
+            numHours.TabStop = true;
+            
+            numMinutes.Enabled = true;
+            numMinutes.TabStop = true;
+            
+            numSeconds.Enabled = true; 
+            numSeconds.TabStop = true;
         }
 
         private void EnableStartButton()
         {
             btnStart.Enabled = true;
-            btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnStart.TabStop = true;
         }
 
         private void DisableStartButton()
         {
             btnStart.Enabled = false;
-            btnStart.Cursor = System.Windows.Forms.Cursors.Default;
+            btnStart.TabStop = false;
         }
 
         private void EnableStopResumeButton()
         {
             btnStopResume.Enabled = true;
-            btnStopResume.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnStopResume.TabStop = true;
+            btnStopResume.Image = Properties.Resources.Stop;
         }
 
         private void DisableStopResumeButton()
         {
-            btnStopResume.Enabled = false;
-            btnStopResume.Cursor = System.Windows.Forms.Cursors.Default;
+            btnStopResume.Enabled = false; 
+            btnStopResume.TabStop = false;
         }
 
-        private void DisableTxtBoxs()
+        private void ResetStopResumeButton()
         {
-            txbHours.Enabled = false;
-            txbMinutes.Enabled = false;
-            txbSeconds.Enabled = false;
+            btnStopResume.Enabled = false;
+            btnStopResume.TabStop = false;
+            btnStopResume.Tag = "Stop";
+            btnStopResume.Image = Properties.Resources.Stop;
+        }
+
+        private void DisableNumBoxs()
+        {
+            numHours.Enabled = false;
+            numHours.TabStop = false;
+
+            numMinutes.Enabled = false;
+            numMinutes.TabStop = false;
+
+            numSeconds.Enabled = false;
+            numSeconds.TabStop = false;
         }
 
         private void ResetAllDefaults()
@@ -92,31 +111,36 @@ namespace Timer
             DisableTimer();
             EnableTxtBoxs();
             EnableStartButton();
-            DisableStopResumeButton();
+            ResetStopResumeButton();
 
+            lblCompletePercentage.Text = "0%";
             lblDuration.Text = "0 : 0 : 0";
-            txbHours.Text = "0";
-            txbMinutes.Text = "00";
-            txbSeconds.Text = "00";
+
+            numHours.Value = 0;
+            numMinutes.Value = 0;
+            numSeconds.Value = 0;
 
             TotalTime = new TimeSpan(0, 0, 0);
             DurationTime = new TimeSpan(0, 0, 0);
             progressBar1.Value = 0;
         }
 
+        private string GetCompletePercentage()
+        {
+            if (TotalTime.TotalSeconds <= 0)
+                return "0%";
+
+            return ((int)(DurationTime.TotalSeconds / TotalTime.TotalSeconds * 100)).ToString() + "%";
+        }
+
+        private void UpdateCompletePercentage()
+        {
+            lblCompletePercentage.Text = GetCompletePercentage();
+        }
+
         private void UpdateDurationLabel()
         {
             lblDuration.Text = DurationTime.Hours.ToString() + " : " + DurationTime.Minutes.ToString() + " : " + DurationTime.Seconds.ToString();
-        }
-
-        private bool IsAllInputsAreZero()
-        {
-            return (Convert.ToInt32(txbHours.Text) == 0 && Convert.ToInt32(txbMinutes.Text) == 0 && Convert.ToInt32(txbSeconds.Text) == 0);
-        }
-
-        private bool IsValidInputs()
-        {
-            return (Convert.ToInt32(txbHours.Text) >= 0 && Convert.ToInt32(txbMinutes.Text) >= 0 && Convert.ToInt32(txbSeconds.Text) >= 0);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -127,9 +151,7 @@ namespace Timer
                 progressBar1.Value += 1;
 
                 UpdateDurationLabel();
-
-                //progressBar1.Refresh();
-                //lblDuration.Refresh();
+                UpdateCompletePercentage();
             }
 
             else
@@ -144,30 +166,21 @@ namespace Timer
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (IsAllInputsAreZero())
+            if (numHours.Value == 0 && numMinutes.Value == 0 && numSeconds.Value == 0)
             {
                 ResetAllDefaults();
                 return;
             }
+         
+            TotalTime = new TimeSpan((int)numHours.Value, (int)numMinutes.Value, (int)numSeconds.Value);
+            DurationTime = new TimeSpan(0, 0, 0);
 
-            if (txbHours.MaskCompleted && txbMinutes.MaskCompleted && txbSeconds.MaskCompleted)
-            {
+            progressBar1.Maximum = Convert.ToInt32(TotalTime.TotalSeconds);
 
-                TotalTime = new TimeSpan(Convert.ToInt32(txbHours.Text), Convert.ToInt32(txbMinutes.Text), Convert.ToInt32(txbSeconds.Text));
-                DurationTime = new TimeSpan(0, 0, 0);
-
-                progressBar1.Maximum = Convert.ToInt32(TotalTime.TotalSeconds);
-
-                DisableStartButton();
-                DisableTxtBoxs();
-                EnableStopResumeButton();
-                EnableTimer();
-            }
-
-            else
-            {
-                MessageBox.Show("invaled inputs", "error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            DisableStartButton();
+            DisableNumBoxs();
+            EnableStopResumeButton();
+            EnableTimer();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -179,7 +192,7 @@ namespace Timer
         {
             if (btnStopResume.Tag.ToString() == "Stop")
             {
-                btnStopResume.Tag = "Resume";
+                btnStopResume.Tag = "Pause";
                 btnStopResume.Image = Properties.Resources.Pause;
                 DisableTimer();
             }
